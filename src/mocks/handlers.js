@@ -23,6 +23,9 @@ export const handlers = [
                },
                {
                    "name":"Dinner",
+               },
+               {
+                   "name":"First Class",
                }
            ])
        )
