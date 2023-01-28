@@ -44,7 +44,7 @@ test("Update option's total when options change", async () => {
 })
 
 describe('total price of goods and options', () => {
-    test('total price starts with 0 and Updating total pirce when adding on product', async () => {
+    test('total price starts with 0 and Updating total price when adding on product', async () => {
         render(<OrderPage/>)
 
         const total = screen.getByText('Total Price', {exact: false})
@@ -68,12 +68,13 @@ describe('total price of goods and options', () => {
 
     test('Updating total price when removing option and product', async () => {
         render(<OrderPage/>);
-        const total = screen.getByText('Total Price', {exact: false});
+        const total = screen.getByText("Total Price:", {exact: false});
 
         const insuranceCheckbox = await screen.findByRole('checkbox', {name: "Insurance"})
-        const americaInput = await screen.findByRole('spinbutton', {name: 'America'})
-
         userEvent.click(insuranceCheckbox);
+
+        const americaInput = await screen.findByRole('spinbutton', {name: 'America'});
+        userEvent.clear(americaInput);
         userEvent.type(americaInput, '3');
 
         userEvent.clear(americaInput);

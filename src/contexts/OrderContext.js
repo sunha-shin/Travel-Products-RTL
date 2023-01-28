@@ -10,7 +10,6 @@ const pricePerItem = {
 function calculateSubtotal(orderType, orderCounts) {
     let optionCount = 0;
     for (const count of orderCounts[orderType].values()) {
-        console.log(orderCounts[orderType])
         optionCount += count;
     }
 
@@ -18,7 +17,6 @@ function calculateSubtotal(orderType, orderCounts) {
 }
 
 export function OrderContextProvider(props) {
-
     // price for each order - products, options
     const [orderCounts, setOrderCounts] = useState({
         products: new Map(),

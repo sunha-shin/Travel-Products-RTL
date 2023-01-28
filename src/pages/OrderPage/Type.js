@@ -35,7 +35,8 @@ function Type({orderType}) {
             key={item.name}
             name={item.name}
             imagePath={item.imagePath}
-            updateItemCount={(itemName, newItemCount) => updateItemCount(itemName, newItemCount, orderType)}
+            updateItemCount={(itemName, newItemCount) =>
+                updateItemCount(itemName, newItemCount, orderType)}
         />
     ));
 
