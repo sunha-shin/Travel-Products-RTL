@@ -46,4 +46,17 @@ test('From order to oder completion', async () => {
         name: "Confirm Order"
     })
     userEvent.click(confirmOrderButton);
+
+    ///// Order Completed Page /////
+    const loading = screen.getByText(/loading/i);
+    expect(loading).toBeInTheDocument();
+
+    const completeHeader = await screen.findByRole("heading", {name: "Order Completed"});
+    expect(completeHeader).toBeInTheDocument();
+
+    const loadingDisappear = screen.queryByText('loading');
+    expect(loadingDisappear).not.toBeInTheDocument();
+
+    const firstPageButton = screen.getByRole('button', {name: "Go to Products page"});
+    userEvent.click(firstPageButton);
 })
