@@ -1,6 +1,12 @@
 import React from "react";
 
-function Products({name, imagePath}) {
+function Products({name, imagePath, updateItemCount}) {
+
+    const handleChange = (event) => {
+        const currentValue = event.target.value;
+        updateItemCount(name, currentValue)
+    }
+
     return (
         <div style={{textAlign: "center"}}>
             <img
@@ -9,13 +15,17 @@ function Products({name, imagePath}) {
                 alt={`${name} product`}
             />
             <form style={{marginTop: "10px"}}>
-                <label style={{textAlign: "right"}}>{name}</label>
+                <label htmlFor={name} style={{textAlign: "right"}}>
+                    {name}
+                </label>
                 <input
+                    id={name}
                     style={{marginLeft: 7}}
                     type="number"
-                    name='quantity'
-                    min='0'
+                    name="quantity"
+                    min="0"
                     defaultValue={0}
+                    onChange={handleChange}
                 />
             </form>
         </div>

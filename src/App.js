@@ -5,7 +5,7 @@ import {OrderContextProvider} from "./contexts/OrderContext.js";
 function App() {
 
     return (
-        <div style={{padding: "4rem"}}>
+        <div style={{padding: "0 4rem"}}>
             <OrderContextProvider>
                 <OrderPage/>
             </OrderContextProvider>

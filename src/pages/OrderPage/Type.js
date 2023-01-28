@@ -1,12 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import Products from "./Products.js";
 import Options from "./Options.js";
 import ErrorBanner from "../../components/ErrorBanner.js";
+import {OrderContext} from '../../contexts/OrderContext.js'
 
 function Type({orderType}) {
     const [items, setItems] = useState([]);
     const [error, setError] = useState(false);
+
+    const [orderDatas, updateItemCount] = useContext(OrderContext)
 
     useEffect(() => {
         loadItems(orderType);
@@ -32,18 +35,21 @@ function Type({orderType}) {
             key={item.name}
             name={item.name}
             imagePath={item.imagePath}
+            updateItemCount={(itemName, newItemCount) => updateItemCount(itemName, newItemCount, orderType)}
         />
     ));
+
+    let orderTypeTitle = orderType === 'products' ? 'Products' : 'Options'
 
     return (
         <>
             <h2>Travel Products</h2>
             <p>Price</p>
-            <p>Total Price: </p>
+            <p>{orderTypeTitle} Total: {orderDatas.totals[orderType]}</p>
             <div
                 style={{
                     display: 'flex',
-                    flexDirection: orderType === "options" && "columm "
+                    flexDirection: orderType === "options" && "column"
                 }}
             >
                 {optionsItems}
